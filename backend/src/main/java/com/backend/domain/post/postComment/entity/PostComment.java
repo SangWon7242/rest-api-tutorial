@@ -2,8 +2,8 @@ package com.backend.domain.post.postComment.entity;
 
 import com.backend.domain.post.post.entity.Post;
 import com.backend.global.jpa.entity.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
