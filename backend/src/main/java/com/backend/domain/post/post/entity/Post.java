@@ -21,16 +21,16 @@ import static jakarta.persistence.FetchType.LAZY;
 @Getter
 @NoArgsConstructor
 public class Post extends BaseEntity {
-  private String title;
+  private String subject;
   private String content;
 
   // orphanRemoval : 자식 엔티티가 삭제되면 부모 엔티티에서도 자식 엔티티를 제거
   @OneToMany(mappedBy = "post", fetch = LAZY, cascade = {PERSIST, REMOVE}, orphanRemoval = true)
   private List<PostComment> comments = new ArrayList<>();
 
-  public Post(String content, String title) {
+  public Post(String subject, String content) {
+    this.subject = subject;
     this.content = content;
-    this.title = title;
   }
 
   public void modify(String title, String content) {
