@@ -1,5 +1,6 @@
 package com.backend.domain.post.post.controller;
 
+import com.backend.domain.post.post.dto.PostDto;
 import com.backend.domain.post.post.entity.Post;
 import com.backend.domain.post.post.repository.PostRepository;
 import com.backend.domain.post.post.service.PostService;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/posts")
@@ -18,16 +21,19 @@ public class ApiV1PostController {
   private final PostService postService;
 
   @GetMapping
-  public List<Post> getItems() {
+  public List<PostDto> getItems() {
     List<Post> items = postService.findAll();
 
-    return items;
+    return items
+        .stream()
+        .map(PostDto::new) // PostDto로 변환
+        .toList();
   }
 
   @GetMapping("/{id}")
-  public Post getItem(@PathVariable Long id) {
+  public PostDto getItem(@PathVariable Long id) {
     Post post = postService.findById(id).get();
 
-    return post;
+    return new PostDto(post);
   }
 }
