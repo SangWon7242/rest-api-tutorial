@@ -6,9 +6,9 @@ import java.time.LocalDateTime;
 
 public record PostDto(
     long id,
-    LocalDateTime createdDate,
-    LocalDateTime modifyedDate,
-    String subject,
+    LocalDateTime createDate,
+    LocalDateTime modifyDate,
+    String title,
     String content
 ) {
 
