@@ -44,7 +44,7 @@ public class ApiV1PostCommentController {
 
   @GetMapping("/{id}/delete")
   @Transactional(readOnly = true)
-  public RsData<PostCommentDto> delete(@PathVariable long postId, @PathVariable long id) {
+  public RsData<Void> delete(@PathVariable long postId, @PathVariable long id) {
     Post post = postService.findById(postId).get();
 
     PostComment postComment = post.findCommentById(id).get();
